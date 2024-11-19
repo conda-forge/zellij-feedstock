@@ -1,5 +1,5 @@
 {% set name = "zellij" %}
-{% set version = "0.41.1" %}
+{% set version = "0.41.2" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/zellij-org/{{ name }}/archive/v{{ version }}.tar.gz
-  sha256: 72db7eb7257db08f338f37f0294791ea815140f739fbcb7059ccb0c8165a99d3
+  sha256: 12e7f0f80c1e39deed5638c4662fc070855cee0250a7eb1d76cefbeef8c2f376
 
 build:
   number: 0
