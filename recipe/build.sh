@@ -13,7 +13,7 @@ cargo-bundle-licenses \
 
 # build statically linked binary with Rust
 # cargo install --bins --no-track --locked --root ${PREFIX} --path .
-cargo xtask install ${PREFIX}/bin/zellij
+cargo xtask ci cross aarch64-apple-darwin
 
 if [[ ${build_platform} == ${target_platform} ]]; then
     mkdir -p ${PREFIX}/etc/bash_completion.d
