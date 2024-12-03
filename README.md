@@ -3,7 +3,7 @@ About zellij-feedstock
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/zellij-feedstock/blob/main/LICENSE.txt)
 
-Home: https://zellij.dev
+Home: https://zellij.dev/
 
 Package license: MIT
 
