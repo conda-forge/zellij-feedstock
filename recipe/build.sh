@@ -12,7 +12,8 @@ cargo-bundle-licenses \
     --output THIRDPARTY.yml
 
 # build statically linked binary with Rust
-cargo install --bins --no-track --locked --root ${PREFIX} --path .
+# cargo install --bins --no-track --locked --root ${PREFIX} --path .
+cargo xtask install ${PREFIX}/bin/zellij
 
 if [[ ${build_platform} == ${target_platform} ]]; then
     mkdir -p ${PREFIX}/etc/bash_completion.d
