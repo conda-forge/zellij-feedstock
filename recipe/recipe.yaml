@@ -12,6 +12,8 @@ source:
 build:
   number: 2
   skip: win
+  prefix_detection:
+    ignore_binary_files: true
 
 requirements:
   build:
@@ -21,8 +23,10 @@ requirements:
     - cargo-bundle-licenses
     - make
     - libprotobuf
+    - pkg-config
   host:
-    - openssl
+    - curl
+    - libcurl
 
 tests:
   - script:
