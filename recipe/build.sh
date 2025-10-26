@@ -22,3 +22,8 @@ if [[ ${build_platform} == ${target_platform} ]]; then
     zellij setup --generate-completion fish > ${PREFIX}/share/fish/vendor_completions.d/zellij.fish
     zellij setup --generate-completion zsh > ${PREFIX}/share/zsh/site-functions/_zellij
 fi
+
+# Tell `pixi global` to not set CONDA_PREFIX during activation
+# https://pixi.sh/dev/global_tools/introduction/#opt-out-of-conda_prefix
+mkdir -p "${PREFIX}/etc/pixi/zellij"
+touch "${PREFIX}/etc/pixi/zellij/global-ignore-conda-prefix"
