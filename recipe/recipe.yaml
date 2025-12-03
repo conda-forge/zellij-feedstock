@@ -10,7 +10,7 @@ source:
   sha256: e9fd24190869be6e9e8d731df2ccd0b3b1dd368ae9dbb9d620ec905b83e325ec
 
 build:
-  number: 1
+  number: 2
   skip: win
   prefix_detection:
     ignore_binary_files: true
