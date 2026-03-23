@@ -19,7 +19,7 @@ docker_image:
 libcurl:
 - '8'
 libprotobuf:
-- 5.29.3
+- 6.31.1
 rust_compiler:
 - rust
 target_platform:
