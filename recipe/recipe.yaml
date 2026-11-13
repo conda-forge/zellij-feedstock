@@ -27,7 +27,7 @@ outputs:
         - cargo-bundle-licenses
         - make
         - libprotobuf
-        - pkg-config
+        - pkgconf
       host:
         - curl
         - libcurl
