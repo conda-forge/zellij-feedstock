@@ -1,0 +1,52 @@
+{
+  "$schema": "https://schemas.conda.org/menuinst/menuinst-1-1-3.schema.json",
+  "menu_name": "Zellij",
+  "menu_items": [
+    {
+      "name": "Zellij",
+      "description": "A terminal workspace with batteries included",
+      "icon": "{{ MENU_DIR }}/zellij.{{ ICON_EXT }}",
+      "command": [
+        ""
+      ],
+      "platforms": {
+        "osx": {
+          "command": [
+            "{{ MENU_ITEM_LOCATION }}/Contents/MacOS/zellij-cli",
+            "terminal"
+          ],
+          "link_in_bundle": {
+            "{{ BIN_DIR }}/zellij": "{{ MENU_ITEM_LOCATION }}/Contents/MacOS/zellij-cli"
+          },
+          "CFBundleName": "Zellij",
+          "CFBundleDisplayName": "Zellij",
+          "CFBundleIdentifier": "dev.zellij.Zellij",
+          "CFBundleVersion": "__PKG_VERSION__",
+          "LSMinimumSystemVersion": "11.0",
+          "info_plist_extra": {
+            "NSHighResolutionCapable": true
+          }
+        },
+        "linux": {
+          "command": [
+            "{{ BIN_DIR }}/zellij",
+            "terminal"
+          ],
+          "GenericName": "Terminal Workspace",
+          "Categories": [
+            "System",
+            "TerminalEmulator"
+          ],
+          "Keywords": [
+            "terminal",
+            "multiplexer",
+            "shell",
+            "workspace"
+          ],
+          "StartupNotify": true,
+          "StartupWMClass": "dev.zellij.Zellij"
+        }
+      }
+    }
+  ]
+}

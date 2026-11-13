@@ -1,7 +1,7 @@
 context:
   version: "0.46.0"
 
-package:
+recipe:
   name: zellij
   version: ${{ version }}
 
@@ -10,27 +10,74 @@ source:
   sha256: 2dfa237fea447f3cc98954e81b0097b9d25841010036720e11f67880fe7861f0
 
 build:
-  number: 0
+  number: 1
   skip: win
-  prefix_detection:
-    ignore_binary_files: true
 
-requirements:
-  build:
-    - ${{ compiler('rust') }}
-    - ${{ compiler('c') }}
-    - ${{ stdlib('c') }}
-    - cargo-bundle-licenses
-    - make
-    - libprotobuf
-    - pkg-config
-  host:
-    - curl
-    - libcurl
+outputs:
+  # Compile zellij once; both packages below inherit these files.
+  - staging:
+      name: zellij-build
+    build:
+      script: build.sh
+    requirements:
+      build:
+        - ${{ compiler('rust') }}
+        - ${{ compiler('c') }}
+        - ${{ stdlib('c') }}
+        - cargo-bundle-licenses
+        - make
+        - libprotobuf
+        - pkgconf
+      host:
+        - curl
+        - libcurl
 
-tests:
-  - script:
-      - zellij --help
+  # Both packages inherit every file installed by the staging build
+  # (binaries, shell completions, pixi marker).
+  - package:
+      name: zellij
+    inherit: zellij-build
+    build:
+      prefix_detection:
+        ignore_binary_files: true
+    tests:
+      - script:
+          - zellij --help
+      - package_contents:
+          bin:
+            - zellij
+
+  # Same files as `zellij`, plus a desktop shortcut for `zellij terminal`.
+  # The two ship the same files, so they cannot be installed together.
+  - package:
+      name: zellij-terminal
+    inherit: zellij-build
+    build:
+      script: build_terminal.sh
+      prefix_detection:
+        ignore_binary_files: true
+    requirements:
+      run_constraints:
+        - zellij <0.0.0a0
+    tests:
+      - script:
+          - zellij --help
+          - zellij terminal --help
+      - package_contents:
+          bin:
+            - zellij
+          files:
+            - Menu/zellij-terminal_menu.json
+            - if: osx
+              then: Menu/zellij.icns
+              else: Menu/zellij.png
+    about:
+      summary: Zellij with a desktop shortcut for its native terminal window
+      description: |
+        Installs Zellij together with a desktop shortcut (via menuinst) that
+        launches `zellij terminal`, Zellij's native terminal window.
+        Conflicts with the `zellij` package, which ships the same files
+        without the shortcut.
 
 about:
   license: MIT
