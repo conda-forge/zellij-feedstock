@@ -1,5 +1,5 @@
 context:
-  version: "0.46.0"
+  version: "0.46.1"
 
 package:
   name: zellij
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/zellij-org/zellij/archive/v${{ version }}.tar.gz
-  sha256: 2dfa237fea447f3cc98954e81b0097b9d25841010036720e11f67880fe7861f0
+  sha256: f512621f3f54970ba46fc736e0f6581a438db9da1e5c3a8b69b314296f938a80
 
 build:
   number: 0
